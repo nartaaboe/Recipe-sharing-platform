@@ -157,7 +157,7 @@ const deleteRecipe = asyncHandler(async (req, res) => {
         throw new Error('Not authorized to delete this recipe');
     }
 
-    await recipe.remove();
+    await Recipe.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: 'Recipe removed' });
 });
 

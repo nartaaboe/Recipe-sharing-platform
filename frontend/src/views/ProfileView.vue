@@ -64,8 +64,6 @@
             <div v-else-if="currentTab === 'collections'">
                 <!-- collections -->
             </div>
-
-
         </div>
         <BaseModal v-if="mode === 'base'" :isOpen="isOpen" :title="modalTitle" :message="modalMessage"
             :onConfirm="confirm" :onCancel="cancel" />
@@ -147,22 +145,32 @@ const editRecipe = async (recipe) => {
     const data = await openEditModal('Edit Recipe', recipe)
     console.log('Received data from modal:', data)
     if (!data) return
-    const formData = new FormData()
-    formData.append('title', data.title)
-    formData.append('description', data.description)
-    if (data.image) formData.append('image', data.image)
-    console.log('Updating recipe with data:', data.image)
-    await updateRecipeAPI(recipe._id, formData)
-    alert('Recipe updated!')
-    await loadRecipes()
+    try {
+        const formData = new FormData()
+        formData.append('title', data.title)
+        formData.append('description', data.description)
+        if (data.image) formData.append('image', data.image)
+        console.log('Updating recipe with data:', data.image)
+        await updateRecipeAPI(recipe._id, formData)
+        alert('Recipe updated successfully!')
+        await loadRecipes()
+    } catch (err) {
+        console.error('Failed to update recipe:', err)
+        alert('Failed to update recipe. Please try again.')
+    }
 }
 
 const deleteRecipe = async (id) => {
-    const confirmed = await openModal('Delete Recipe', 'Are you sure to delete?')
+    const confirmed = await openModal('Delete Recipe', 'Are you sure you want to delete this recipe? This action cannot be undone.')
     if (!confirmed) return
-    await deleteRecipeAPI(id)
-    alert('Recipe deleted!')
-    await loadRecipes()
+    try {
+        await deleteRecipeAPI(id)
+        alert('Recipe deleted successfully!')
+        await loadRecipes()
+    } catch (err) {
+        console.error('Failed to delete recipe:', err)
+        alert('Failed to delete recipe. Please try again.')
+    }
 }
 
 </script>

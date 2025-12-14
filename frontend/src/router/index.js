@@ -27,13 +27,11 @@ const routes = [
   },
   { 
     path: "/profile", 
-    component: () => import("../views/ProfileView.vue"),
-    children: [
-      {
-        path: "edit",
-        component: () => import("../views/EditProfileView.vue")
-      }
-    ]
+    component: () => import("../views/ProfileView.vue")
+  },
+  {
+    path: "/profile/edit",
+    component: () => import("../views/EditProfileView.vue")
   },
   {
     path: '/:pathMatch(.*)*',

@@ -71,7 +71,8 @@ onUpdated(() => {
     console.log('RecipeCard updated for recipe:', props.recipe?._id || props.recipe?.id)
 })
 
-const toggleFavorite = async () => {
+const toggleFavorite = async (e) => {
+    e.stopPropagation() // Prevent triggering the card click
     try {
         if (isFavorite.value) {
             await removeFavoriteAPI(props.recipe._id)
@@ -82,6 +83,7 @@ const toggleFavorite = async () => {
         }
     } catch (err) {
         console.error('Failed to toggle favorite', err)
+        alert('Failed to update favorite. Please try again.')
     }
 }
 

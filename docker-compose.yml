@@ -12,11 +12,11 @@ services:
     networks:
       - recipe-network
 
-  backend:
+  app:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
-    container_name: recipe-backend
+    container_name: recipe-app
     restart: unless-stopped
     ports:
       - "5000:5000"
@@ -28,28 +28,11 @@ services:
       - JWT_EXPIRE=${JWT_EXPIRE:-30m}
       - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-your-super-secret-refresh-key-change-this}
       - JWT_REFRESH_EXPIRE=${JWT_REFRESH_EXPIRE:-7d}
+      - FRONTEND_URL=http://localhost:5000
     volumes:
       - ./backend/uploads:/app/uploads
     depends_on:
       - mongodb
-    networks:
-      - recipe-network
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: recipe-frontend
-    restart: unless-stopped
-    ports:
-      - "5173:5173"
-    environment:
-      - VITE_API_URL=http://localhost:5000
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    depends_on:
-      - backend
     networks:
       - recipe-network
 

@@ -185,43 +185,45 @@ const toggleLike = async () => {
     }
     catch (err) {
         console.error('Failed to toggle like:', err)
+        alert('Failed to update favorite. Please try again.')
     }
 }
 
 const handleShare = async () => {
     const shareData = {
         title: recipe.value.title,
-        text: `Check out this delicious recipe: ${recipe.value.title} by ${recipe.value.author?.username}`,
-        url: window.location.href // 获取当前页面的 URL
+        text: `Check out this delicious recipe: ${recipe.value.title} by ${recipe.value.author?.username || 'a chef'}`,
+        url: window.location.href
     }
 
-    // A. 尝试调用浏览器原生分享 (移动端体验极佳)
-    if (navigator.share) {
+    // Try native share API (works on mobile and some desktop browsers)
+    if (navigator.share && navigator.share instanceof Function) {
         try {
             await navigator.share(shareData)
             console.log('Shared successfully')
+            return
         } catch (err) {
-            // 用户取消分享不当做错误处理
-            if (err.name !== 'AbortError') {
-                console.error('Error sharing:', err)
+            // User cancelled share - don't treat as error
+            if (err.name === 'AbortError') {
+                return
             }
+            console.error('Error sharing:', err)
+            // Fall through to clipboard method
         }
     }
-    // B. 如果不支持原生分享 (通常是 PC 端)，则复制链接
-    else {
-        try {
-            await navigator.clipboard.writeText(shareData.url)
-
-            // 显示 "Link Copied!" 提示，2秒后消失
-            showCopyTooltip.value = true
-            setTimeout(() => {
-                showCopyTooltip.value = false
-            }, 2000)
-
-        } catch (err) {
-            console.error('Failed to copy:', err)
-            alert('Failed to copy link.')
-        }
+    
+    // Fallback: Copy to clipboard (for desktop browsers)
+    try {
+        await navigator.clipboard.writeText(shareData.url)
+        // Show "Link Copied!" tooltip
+        showCopyTooltip.value = true
+        setTimeout(() => {
+            showCopyTooltip.value = false
+        }, 2000)
+    } catch (err) {
+        console.error('Failed to copy:', err)
+        // Final fallback: show URL in alert
+        alert(`Share this recipe: ${shareData.url}`)
     }
 }
 
