@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useUserStore } from '../stores/userStore'
 import router from '@/router'
 
-const baseURL = 'http://172.20.10.3:5001'
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
 const httpInstance = axios.create({
   baseURL: baseURL,
@@ -76,7 +76,7 @@ httpInstance.interceptors.response.use(
       try {
         // 调用刷新 Token 接口
         // 注意：这里直接用 axios 原生实例，避免走拦截器逻辑
-        const { data } = await axios.get(`${baseURL}/users/refresh-token`, {
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/users/refresh-token`, {
           withCredentials: true // 必须带上 Cookie
         })
 

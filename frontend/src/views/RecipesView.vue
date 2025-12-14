@@ -113,7 +113,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, watchEffect, reactive, onMounted, onUnmounted } from 'vue'
 import { Heart, Share2 } from 'lucide-vue-next'
 import { getPopularRecipesAPI, getLatestRecipesAPI, getAllRecipesAPI } from '@/api/recipe'
 import { useRoute, useRouter } from 'vue-router'
@@ -128,6 +128,32 @@ const popularTags = ref([])
 const authorRecipes = ref([])
 const authorName = ref('Author')
 const loading = ref(false)
+
+// Using reactive for filter state
+const filterState = reactive({
+    searchQuery: '',
+    sortBy: 'latest',
+    category: 'all'
+})
+
+// watchEffect example - automatically tracks dependencies
+let watchEffectStop = null
+onMounted(() => {
+    watchEffectStop = watchEffect(() => {
+        // This will run whenever filterState changes
+        if (filterState.searchQuery || filterState.sortBy !== 'latest' || filterState.category !== 'all') {
+            console.log('Filter state changed:', filterState)
+            // Could trigger a search here
+        }
+    })
+})
+
+onUnmounted(() => {
+    // Cleanup watchEffect
+    if (watchEffectStop) {
+        watchEffectStop()
+    }
+})
 
 const isAuthorMode = computed(() => !!route.query.author)
 

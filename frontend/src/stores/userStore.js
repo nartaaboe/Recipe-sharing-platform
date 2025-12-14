@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export const useUserStore = defineStore('user', () => {
     const userInfo = ref({
@@ -8,6 +8,15 @@ export const useUserStore = defineStore('user', () => {
         email: '',
         avatar: ''
     })
+
+    // Getters
+    const isLoggedIn = computed(() => !!userInfo.value.token)
+    
+    const userName = computed(() => userInfo.value.username || 'Guest')
+    
+    const userEmail = computed(() => userInfo.value.email || '')
+    
+    const userAvatar = computed(() => userInfo.value.avatar || '')
 
     const setUserInfo = (data) => {
         userInfo.value = data
@@ -42,5 +51,17 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
-    return { userInfo, setUserInfo, setToken, logout, loadLocalStorage, setAvatar, setUsername }
+    return { 
+        userInfo, 
+        isLoggedIn,
+        userName,
+        userEmail,
+        userAvatar,
+        setUserInfo, 
+        setToken, 
+        logout, 
+        loadLocalStorage, 
+        setAvatar, 
+        setUsername 
+    }
 })

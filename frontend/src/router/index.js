@@ -1,22 +1,44 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import RecipeDetailView from "../views/RecipeDetailView.vue";
-import AddRecipeView from "../views/AddRecipeView.vue";
-import LoginView from "../views/LoginView.vue";
-import RegisterView from "../views/RegisterView.vue";
-import RecipesView from "../views/RecipesView.vue";
-import ProfileView from "../views/ProfileView.vue";
-import EditProfileView from "@/views/EditProfileView.vue";
 
 const routes = [
-  { path: "/", component: HomeView },
-  { path: "/recipe/:id", component: RecipeDetailView },
-  { path: "/add", component: AddRecipeView },
-  { path: "/login", component: LoginView },
-  { path: "/register", component: RegisterView },
-  { path: "/recipes", component: RecipesView },
-  { path: "/profile", component: ProfileView },
-  { path: '/profile/edit', component: EditProfileView },
+  { 
+    path: "/", 
+    component: () => import("../views/HomeView.vue") 
+  },
+  { 
+    path: "/recipe/:id", 
+    component: () => import("../views/RecipeDetailView.vue") 
+  },
+  { 
+    path: "/add", 
+    component: () => import("../views/AddRecipeView.vue") 
+  },
+  { 
+    path: "/login", 
+    component: () => import("../views/LoginView.vue") 
+  },
+  { 
+    path: "/register", 
+    component: () => import("../views/RegisterView.vue") 
+  },
+  { 
+    path: "/recipes", 
+    component: () => import("../views/RecipesView.vue") 
+  },
+  { 
+    path: "/profile", 
+    component: () => import("../views/ProfileView.vue"),
+    children: [
+      {
+        path: "edit",
+        component: () => import("../views/EditProfileView.vue")
+      }
+    ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import("../views/NotFoundView.vue")
+  }
 ];
 
 const router = createRouter({

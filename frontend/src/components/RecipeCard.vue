@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps } from "vue";
+import { ref, onMounted, onUnmounted, onUpdated, defineProps } from "vue";
 import { Heart, Eye } from "lucide-vue-next";
 import { useRouter } from "vue-router";
 import { addFavoriteAPI, removeFavoriteAPI, getFavoritesAPI } from '@/api/user'
@@ -36,6 +36,8 @@ const router = useRouter();
 const props = defineProps({ recipe: Object });
 
 const isFavorite = ref(false);
+let favoriteCheckInterval = null;
+
 onMounted(async () => {
     try {
         const favorites = await getFavoritesAPI()
@@ -44,6 +46,29 @@ onMounted(async () => {
     } catch (err) {
         console.error('Failed to load favorites', err)
     }
+    
+    // Example: Set up interval to check favorites periodically
+    favoriteCheckInterval = setInterval(async () => {
+        try {
+            const favorites = await getFavoritesAPI()
+            isFavorite.value = favorites.some(r => r._id === props.recipe._id)
+        } catch (err) {
+            // Silent fail for background check
+        }
+    }, 30000) // Check every 30 seconds
+})
+
+onUnmounted(() => {
+    // Cleanup: Clear interval when component is unmounted
+    if (favoriteCheckInterval) {
+        clearInterval(favoriteCheckInterval)
+        favoriteCheckInterval = null
+    }
+})
+
+onUpdated(() => {
+    // Log when component updates (e.g., when recipe prop changes)
+    console.log('RecipeCard updated for recipe:', props.recipe?._id || props.recipe?.id)
 })
 
 const toggleFavorite = async () => {
@@ -77,11 +102,23 @@ const goDetail = () => {
     flex-direction: column;
     flex: 1;
     height: 100%;
+    animation: slideIn 0.5s ease-out;
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .image-container {
