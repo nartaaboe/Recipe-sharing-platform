@@ -1,0 +1,656 @@
+// Mock data for standalone frontend deployment
+
+// Mock Users
+const mockUsers = [
+  {
+    _id: '1',
+    username: 'Chef Sarah',
+    email: 'sarah@example.com',
+    avatar: '/avatar.jpg',
+    createdAt: new Date('2024-01-15').toISOString()
+  },
+  {
+    _id: '2',
+    username: 'Chef Marco',
+    email: 'marco@example.com',
+    avatar: '/profile.png',
+    createdAt: new Date('2024-02-20').toISOString()
+  },
+  {
+    _id: '3',
+    username: 'Foodie Emma',
+    email: 'emma@example.com',
+    avatar: '/avatar.jpg',
+    createdAt: new Date('2024-03-10').toISOString()
+  }
+]
+
+// Mock Recipes
+const mockRecipes = [
+  {
+    _id: '1',
+    title: 'Classic Italian Pasta Carbonara',
+    description: 'A creamy, indulgent pasta dish that brings the authentic flavors of Rome to your kitchen. This recipe features crispy pancetta, rich egg yolks, and freshly grated pecorino cheese.',
+    image: '/meal1.jpg',
+    prepTime: 15,
+    cookTime: 20,
+    servings: 4,
+    calories: 520,
+    tags: ['Italian', 'Pasta', 'Comfort Food', 'Dinner'],
+    ingredients: [
+      '400g spaghetti',
+      '200g pancetta, diced',
+      '4 large egg yolks',
+      '100g pecorino cheese, grated',
+      '2 cloves garlic, minced',
+      'Black pepper to taste',
+      'Salt for pasta water'
+    ],
+    instructions: [
+      'Bring a large pot of salted water to boil and cook spaghetti according to package directions.',
+      'While pasta cooks, heat a large pan and add diced pancetta. Cook until crispy.',
+      'In a bowl, whisk together egg yolks, grated pecorino, and black pepper.',
+      'Drain pasta, reserving 1 cup of pasta water.',
+      'Add hot pasta to the pan with pancetta, remove from heat.',
+      'Quickly stir in the egg mixture, adding pasta water as needed to create a creamy sauce.',
+      'Serve immediately with extra cheese and pepper.'
+    ],
+    nutrition: [
+      'Calories: 520 kcal',
+      'Protein: 22g',
+      'Carbs: 65g',
+      'Fat: 18g',
+      'Fiber: 3g'
+    ],
+    author: mockUsers[0],
+    views: 1234,
+    likes: 89,
+    createdAt: new Date('2024-11-15').toISOString(),
+    updatedAt: new Date('2024-11-15').toISOString()
+  },
+  {
+    _id: '2',
+    title: 'Mediterranean Grilled Salmon',
+    description: 'Tender, flaky salmon fillets marinated in herbs and olive oil, then perfectly grilled. Served with a fresh lemon-herb sauce.',
+      image: '/meal2.jpg',
+    prepTime: 20,
+    cookTime: 15,
+    servings: 2,
+    calories: 380,
+    tags: ['Seafood', 'Healthy', 'Mediterranean', 'Grilled'],
+    ingredients: [
+      '2 salmon fillets (6oz each)',
+      '3 tbsp olive oil',
+      '2 lemons, juiced and zested',
+      '3 cloves garlic, minced',
+      'Fresh dill, chopped',
+      'Fresh parsley, chopped',
+      'Salt and pepper to taste'
+    ],
+    instructions: [
+      'Mix olive oil, lemon juice, zest, garlic, and herbs in a bowl.',
+      'Marinate salmon fillets in the mixture for 30 minutes.',
+      'Preheat grill to medium-high heat.',
+      'Grill salmon skin-side down for 5-6 minutes, then flip.',
+      'Cook for another 4-5 minutes until fish flakes easily.',
+      'Serve with lemon wedges and remaining herb sauce.'
+    ],
+    nutrition: [
+      'Calories: 380 kcal',
+      'Protein: 35g',
+      'Carbs: 2g',
+      'Fat: 25g',
+      'Omega-3: High'
+    ],
+    author: mockUsers[1],
+    views: 892,
+    likes: 67,
+    createdAt: new Date('2024-11-10').toISOString(),
+    updatedAt: new Date('2024-11-10').toISOString()
+  },
+  {
+    _id: '3',
+    title: 'Chocolate Chip Cookies',
+    description: 'The ultimate comfort dessert - soft, chewy cookies loaded with melty chocolate chips. Perfect for any occasion.',
+      image: '/meal3.jpg',
+    prepTime: 15,
+    cookTime: 12,
+    servings: 24,
+    calories: 150,
+    tags: ['Dessert', 'Baking', 'Sweet', 'Cookies'],
+    ingredients: [
+      '2 1/4 cups all-purpose flour',
+      '1 tsp baking soda',
+      '1 tsp salt',
+      '1 cup butter, softened',
+      '3/4 cup granulated sugar',
+      '3/4 cup brown sugar',
+      '2 large eggs',
+      '2 tsp vanilla extract',
+      '2 cups chocolate chips'
+    ],
+    instructions: [
+      'Preheat oven to 375°F (190°C).',
+      'Mix flour, baking soda, and salt in a bowl.',
+      'Cream butter and both sugars until light and fluffy.',
+      'Beat in eggs and vanilla extract.',
+      'Gradually mix in flour mixture.',
+      'Stir in chocolate chips.',
+      'Drop rounded tablespoons onto ungreased baking sheets.',
+      'Bake for 9-11 minutes until golden brown.',
+      'Cool on baking sheet for 2 minutes before transferring.'
+    ],
+    nutrition: [
+      'Calories: 150 kcal',
+      'Protein: 2g',
+      'Carbs: 20g',
+      'Fat: 8g',
+      'Sugar: 12g'
+    ],
+    author: mockUsers[2],
+    views: 2456,
+    likes: 234,
+    createdAt: new Date('2024-11-05').toISOString(),
+    updatedAt: new Date('2024-11-05').toISOString()
+  },
+  {
+    _id: '4',
+    title: 'Vegetarian Buddha Bowl',
+    description: 'A colorful, nutritious bowl packed with roasted vegetables, quinoa, and a tahini dressing. Perfect for a healthy lunch or dinner.',
+    image: '/meal1.jpg',
+    prepTime: 20,
+    cookTime: 30,
+    servings: 2,
+    calories: 420,
+    tags: ['Vegetarian', 'Healthy', 'Bowl', 'Lunch'],
+    ingredients: [
+      '1 cup quinoa, cooked',
+      '1 sweet potato, cubed and roasted',
+      '1 bell pepper, sliced',
+      '1 cup chickpeas, drained',
+      '2 cups baby spinach',
+      '1 avocado, sliced',
+      '2 tbsp tahini',
+      '1 lemon, juiced',
+      '2 tbsp olive oil'
+    ],
+    instructions: [
+      'Preheat oven to 400°F (200°C).',
+      'Toss sweet potato and bell pepper with olive oil, roast for 25 minutes.',
+      'Rinse quinoa and cook according to package directions.',
+      'In a bowl, whisk tahini, lemon juice, and olive oil for dressing.',
+      'Divide quinoa among bowls, top with roasted vegetables.',
+      'Add chickpeas, spinach, and avocado slices.',
+      'Drizzle with tahini dressing and serve.'
+    ],
+    nutrition: [
+      'Calories: 420 kcal',
+      'Protein: 15g',
+      'Carbs: 55g',
+      'Fat: 16g',
+      'Fiber: 12g'
+    ],
+    author: mockUsers[0],
+    views: 678,
+    likes: 45,
+    createdAt: new Date('2024-11-08').toISOString(),
+    updatedAt: new Date('2024-11-08').toISOString()
+  },
+  {
+    _id: '5',
+    title: 'Beef Steak with Mashed Potatoes',
+    description: 'Juicy, perfectly seared ribeye steak served with creamy mashed potatoes and sautéed vegetables. A classic comfort meal.',
+      image: '/meal2.jpg',
+    prepTime: 15,
+    cookTime: 25,
+    servings: 2,
+    calories: 650,
+    tags: ['Beef', 'Dinner', 'Comfort Food', 'Steak'],
+    ingredients: [
+      '2 ribeye steaks (8oz each)',
+      '4 large potatoes, peeled',
+      '1/4 cup butter',
+      '1/4 cup heavy cream',
+      '2 cups green beans',
+      'Salt and pepper to taste',
+      'Garlic powder'
+    ],
+    instructions: [
+      'Bring potatoes to boil in salted water, cook until tender.',
+      'Season steaks generously with salt, pepper, and garlic powder.',
+      'Heat a cast-iron skillet over high heat.',
+      'Sear steaks for 4-5 minutes per side for medium-rare.',
+      'Let steaks rest for 5 minutes before slicing.',
+      'Mash potatoes with butter and cream until smooth.',
+      'Steam or sauté green beans until tender-crisp.',
+      'Serve steak with mashed potatoes and vegetables.'
+    ],
+    nutrition: [
+      'Calories: 650 kcal',
+      'Protein: 45g',
+      'Carbs: 35g',
+      'Fat: 38g',
+      'Iron: High'
+    ],
+    author: mockUsers[1],
+    views: 1456,
+    likes: 112,
+    createdAt: new Date('2024-11-12').toISOString(),
+    updatedAt: new Date('2024-11-12').toISOString()
+  },
+  {
+    _id: '6',
+    title: 'Fresh Spring Rolls with Peanut Sauce',
+    description: 'Light, refreshing Vietnamese-style spring rolls filled with shrimp, vegetables, and herbs. Served with a tangy peanut dipping sauce.',
+      image: '/meal3.jpg',
+    prepTime: 30,
+    cookTime: 5,
+    servings: 4,
+    calories: 180,
+    tags: ['Asian', 'Healthy', 'Appetizer', 'Fresh'],
+    ingredients: [
+      '12 rice paper wrappers',
+      '12 cooked shrimp, halved',
+      '1 cup rice noodles, cooked',
+      '1 cup lettuce, shredded',
+      '1/2 cup carrots, julienned',
+      '1/2 cup cucumber, julienned',
+      'Fresh mint and cilantro',
+      '1/4 cup peanut butter',
+      '2 tbsp hoisin sauce',
+      '1 lime, juiced'
+    ],
+    instructions: [
+      'Prepare all vegetables and herbs, set aside.',
+      'Soak rice paper wrapper in warm water for 10 seconds.',
+      'Lay wrapper flat, add shrimp, noodles, and vegetables.',
+      'Fold sides in, then roll tightly.',
+      'Repeat for remaining rolls.',
+      'Mix peanut butter, hoisin, and lime juice for sauce.',
+      'Serve rolls with dipping sauce.'
+    ],
+    nutrition: [
+      'Calories: 180 kcal',
+      'Protein: 12g',
+      'Carbs: 22g',
+      'Fat: 5g',
+      'Fiber: 2g'
+    ],
+    author: mockUsers[2],
+    views: 934,
+    likes: 78,
+    createdAt: new Date('2024-11-03').toISOString(),
+    updatedAt: new Date('2024-11-03').toISOString()
+  }
+]
+
+// Mock Reviews
+const mockReviews = {
+  '1': [
+    {
+      id: 'r1',
+      name: 'John Doe',
+      avatar: '/avatar.jpg',
+      rating: 5,
+      text: 'Amazing recipe! The pasta turned out perfect and creamy. Will definitely make this again.',
+      date: '2024-11-16'
+    },
+    {
+      id: 'r2',
+      name: 'Jane Smith',
+      avatar: '/profile.png',
+      rating: 4,
+      text: 'Great recipe, though I added a bit more pepper. Very authentic Italian taste!',
+      date: '2024-11-17'
+    }
+  ],
+  '2': [
+    {
+      id: 'r3',
+      name: 'Mike Johnson',
+      avatar: '/avatar.jpg',
+      rating: 5,
+      text: 'The salmon was perfectly cooked and the marinade was delicious. Highly recommend!',
+      date: '2024-11-11'
+    }
+  ],
+  '3': [
+    {
+      id: 'r4',
+      name: 'Lisa Brown',
+      avatar: '/profile.png',
+      rating: 5,
+      text: 'Best chocolate chip cookies I\'ve ever made! So soft and chewy. My family loved them.',
+      date: '2024-11-06'
+    }
+  ]
+}
+
+// Mock favorites (stored in localStorage-like structure)
+let mockFavorites = ['1', '3']
+
+// Mock following (userId -> array of chefIds they follow)
+let mockFollowing = {
+  // 'currentUserId': ['chefId1', 'chefId2']
+}
+
+// Helper function to simulate delay
+const delay = (ms = 300) => new Promise(resolve => setTimeout(resolve, ms))
+
+// Mock API responses
+export const mockAPI = {
+  // Recipe APIs
+  // Note: Mock APIs return data directly (mimicking http interceptor which extracts res.data)
+  async getRecipe(id) {
+    await delay()
+    const recipe = mockRecipes.find(r => r._id === id)
+    if (!recipe) throw new Error('Recipe not found')
+    return recipe
+  },
+
+  async getLatestRecipes(page = 1, pageSize = 10) {
+    await delay()
+    const start = (page - 1) * pageSize
+    const end = start + pageSize
+    const sorted = [...mockRecipes].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    return {
+      recipes: sorted.slice(start, end),
+      total: mockRecipes.length,
+      page,
+      pageSize,
+      totalPages: Math.ceil(mockRecipes.length / pageSize)
+    }
+  },
+
+  async getPopularRecipes(limit = 10) {
+    await delay()
+    const sorted = [...mockRecipes].sort((a, b) => (b.views || 0) - (a.views || 0))
+    return sorted.slice(0, limit)
+  },
+
+  async getAllRecipes(page = 1, pageSize = 20, search = '', author = '') {
+    await delay()
+    let filtered = [...mockRecipes]
+    
+    if (search) {
+      const searchLower = search.toLowerCase()
+      filtered = filtered.filter(r => 
+        r.title.toLowerCase().includes(searchLower) ||
+        r.description.toLowerCase().includes(searchLower) ||
+        r.tags.some(tag => tag.toLowerCase().includes(searchLower))
+      )
+    }
+    
+    if (author) {
+      filtered = filtered.filter(r => r.author.username === author)
+    }
+    
+    const start = (page - 1) * pageSize
+    const end = start + pageSize
+    
+    return {
+      recipes: filtered.slice(start, end),
+      total: filtered.length,
+      page,
+      pageSize,
+      totalPages: Math.ceil(filtered.length / pageSize)
+    }
+  },
+
+  async createRecipe(formData) {
+    await delay(500)
+    const newRecipe = {
+      _id: String(mockRecipes.length + 1),
+      title: formData.get('title') || 'New Recipe',
+      description: formData.get('description') || '',
+      image: '/meal1.jpg',
+      prepTime: parseInt(formData.get('prepTime')) || 15,
+      cookTime: parseInt(formData.get('cookTime')) || 20,
+      servings: parseInt(formData.get('servings')) || 4,
+      calories: parseInt(formData.get('calories')) || 300,
+      tags: formData.get('tags')?.split(',').map(t => t.trim()) || [],
+      ingredients: formData.get('ingredients')?.split('\n').filter(i => i.trim()) || [],
+      instructions: formData.get('instructions')?.split('\n').filter(i => i.trim()) || [],
+      nutrition: [],
+      author: mockUsers[0],
+      views: 0,
+      likes: 0,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    }
+    mockRecipes.unshift(newRecipe)
+    return newRecipe
+  },
+
+  async updateRecipe(id, data) {
+    await delay(500)
+    const index = mockRecipes.findIndex(r => r._id === id)
+    if (index === -1) throw new Error('Recipe not found')
+    mockRecipes[index] = { ...mockRecipes[index], ...data, updatedAt: new Date().toISOString() }
+    return mockRecipes[index]
+  },
+
+  async deleteRecipe(id) {
+    await delay(300)
+    const index = mockRecipes.findIndex(r => r._id === id)
+    if (index === -1) throw new Error('Recipe not found')
+    mockRecipes.splice(index, 1)
+    return { message: 'Recipe deleted' }
+  },
+
+  async toggleFavorite(id) {
+    await delay(200)
+    const index = mockFavorites.indexOf(id)
+    if (index > -1) {
+      mockFavorites.splice(index, 1)
+    } else {
+      mockFavorites.push(id)
+    }
+    return { message: 'Favorite toggled' }
+  },
+
+  // User APIs
+  async register(data) {
+    await delay(400)
+    const newUser = {
+      _id: String(mockUsers.length + 1),
+      username: data.username,
+      email: data.email,
+      avatar: '/avatar.jpg',
+      token: 'mock_token_' + Date.now(),
+      createdAt: new Date().toISOString()
+    }
+    mockUsers.push(newUser)
+    return newUser
+  },
+
+  async login(data) {
+    await delay(300)
+    let user = mockUsers.find(u => u.email === data.email)
+    if (!user) {
+      // Create a new user if not found (for demo purposes)
+      user = {
+        _id: String(mockUsers.length + 1),
+        username: data.email.split('@')[0],
+        email: data.email,
+        avatar: '/avatar.jpg',
+        createdAt: new Date().toISOString()
+      }
+      mockUsers.push(user)
+    }
+    return {
+      ...user,
+      token: 'mock_token_' + Date.now()
+    }
+  },
+
+  async logout() {
+    await delay(100)
+    return { message: 'Logged out' }
+  },
+
+  async updateUsername(username) {
+    await delay(300)
+    return { username }
+  },
+
+  async addFavorite(recipeId) {
+    await delay(200)
+    if (!mockFavorites.includes(recipeId)) {
+      mockFavorites.push(recipeId)
+    }
+    return { message: 'Added to favorites' }
+  },
+
+  async removeFavorite(recipeId) {
+    await delay(200)
+    const index = mockFavorites.indexOf(recipeId)
+    if (index > -1) {
+      mockFavorites.splice(index, 1)
+    }
+    return { message: 'Removed from favorites' }
+  },
+
+  async getFavorites() {
+    await delay(300)
+    return mockRecipes.filter(r => mockFavorites.includes(r._id))
+  },
+
+  async getMyRecipes() {
+    await delay(300)
+    // Return recipes by the first user (as if logged in)
+    return mockRecipes.filter(r => r.author._id === mockUsers[0]._id)
+  },
+
+  async uploadAvatar(file) {
+    await delay(500)
+    return { avatar: '/avatar.jpg' }
+  },
+
+  // Reviews
+  getReviews(recipeId) {
+    return mockReviews[recipeId] || []
+  },
+
+  // Chef/Follow APIs
+  async getAllChefs(search = '') {
+    await delay(300)
+    let chefs = mockUsers.map(user => {
+      const recipes = mockRecipes.filter(r => r.author._id === user._id)
+      return {
+        ...user,
+        recipeCount: recipes.length,
+        totalViews: recipes.reduce((sum, r) => sum + (r.views || 0), 0),
+        latestRecipe: recipes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0] || null
+      }
+    })
+    
+    if (search) {
+      const searchLower = search.toLowerCase()
+      chefs = chefs.filter(c => 
+        c.username.toLowerCase().includes(searchLower) ||
+        c.email.toLowerCase().includes(searchLower)
+      )
+    }
+    
+    return chefs
+  },
+
+  async getChefByRecipe(recipeId) {
+    await delay(200)
+    const recipe = mockRecipes.find(r => r._id === recipeId)
+    if (!recipe) return null
+    
+    const chef = mockUsers.find(u => u._id === recipe.author._id)
+    if (!chef) return null
+    
+    const recipes = mockRecipes.filter(r => r.author._id === chef._id)
+    return {
+      ...chef,
+      recipeCount: recipes.length,
+      totalViews: recipes.reduce((sum, r) => sum + (r.views || 0), 0),
+      recipes: recipes.slice(0, 6) // Latest 6 recipes
+    }
+  },
+
+  async getChefProfile(chefId) {
+    await delay(200)
+    const chef = mockUsers.find(u => u._id === chefId)
+    if (!chef) throw new Error('Chef not found')
+    
+    const recipes = mockRecipes.filter(r => r.author._id === chefId)
+    return {
+      ...chef,
+      recipeCount: recipes.length,
+      totalViews: recipes.reduce((sum, r) => sum + (r.views || 0), 0),
+      followers: Object.values(mockFollowing).filter(follows => follows.includes(chefId)).length,
+      following: (mockFollowing[chefId] || []).length,
+      recipes: recipes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    }
+  },
+
+  async followChef(chefId, userId = 'current') {
+    await delay(300)
+    if (!mockFollowing[userId]) {
+      mockFollowing[userId] = []
+    }
+    if (!mockFollowing[userId].includes(chefId)) {
+      mockFollowing[userId].push(chefId)
+    }
+    return { message: 'Followed chef', following: true }
+  },
+
+  async unfollowChef(chefId, userId = 'current') {
+    await delay(300)
+    if (mockFollowing[userId]) {
+      const index = mockFollowing[userId].indexOf(chefId)
+      if (index > -1) {
+        mockFollowing[userId].splice(index, 1)
+      }
+    }
+    return { message: 'Unfollowed chef', following: false }
+  },
+
+  async getFollowing(userId = 'current') {
+    await delay(200)
+    const followingIds = mockFollowing[userId] || []
+    return mockUsers.filter(u => followingIds.includes(u._id)).map(chef => {
+      const recipes = mockRecipes.filter(r => r.author._id === chef._id)
+      return {
+        ...chef,
+        recipeCount: recipes.length,
+        totalViews: recipes.reduce((sum, r) => sum + (r.views || 0), 0)
+      }
+    })
+  },
+
+  async isFollowing(chefId, userId = 'current') {
+    await delay(100)
+    return (mockFollowing[userId] || []).includes(chefId)
+  },
+
+  async getChefsByRecipe(recipeId) {
+    await delay(200)
+    // Find all chefs who have recipes similar to this one (by tags)
+    const recipe = mockRecipes.find(r => r._id === recipeId)
+    if (!recipe) return []
+    
+    const similarTags = recipe.tags || []
+    const chefsWithSimilar = mockRecipes
+      .filter(r => r._id !== recipeId && r.tags && r.tags.some(tag => similarTags.includes(tag)))
+      .map(r => r.author._id)
+      .filter((id, index, self) => self.indexOf(id) === index) // unique
+    
+    return mockUsers.filter(u => chefsWithSimilar.includes(u._id)).map(chef => {
+      const recipes = mockRecipes.filter(r => r.author._id === chef._id)
+      return {
+        ...chef,
+        recipeCount: recipes.length,
+        totalViews: recipes.reduce((sum, r) => sum + (r.views || 0), 0)
+      }
+    })
+  }
+}
+
+export { mockRecipes, mockUsers, mockReviews, mockFavorites, mockFollowing }
+
