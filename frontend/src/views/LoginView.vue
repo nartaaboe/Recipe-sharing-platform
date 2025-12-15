@@ -52,8 +52,14 @@ const login = async () => {
             email: email.value,
             password: password.value
         })
-        userStore.setUserInfo(res.user)
-        userStore.setToken(res.token)
+        // Handle both formats: { user, token } or { ...user, token }
+        if (res.user) {
+            userStore.setUserInfo({ ...res.user, token: res.token })
+            userStore.setToken(res.token)
+        } else {
+            userStore.setUserInfo(res)
+            userStore.setToken(res.token)
+        }
         router.push('/')
     } catch (err) {
         console.error("login error", err)

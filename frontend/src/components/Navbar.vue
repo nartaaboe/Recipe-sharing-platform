@@ -15,6 +15,9 @@
                 <RouterLink to="/recipes">RECIPES</RouterLink>
             </li>
             <li>
+                <RouterLink to="/chefs">CHEFS</RouterLink>
+            </li>
+            <li>
                 <RouterLink to="/login">LOGIN</RouterLink>
             </li>
             <li>

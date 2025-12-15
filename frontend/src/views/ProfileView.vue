@@ -7,7 +7,7 @@
 
         <div v-else>
             <div class="profile-header">
-                <img class="avatar" :src="`http://localhost:5001${user.avatar}` || avatar" alt="Avatar" />
+                <img class="avatar" :src="user.avatar?.startsWith('http') ? user.avatar : (user.avatar?.startsWith('/') ? user.avatar : `/src/assets${user.avatar || '/avatar.jpg'}`)" alt="Avatar" />
                 <div class="profile-info">
                     <h2 class="username">{{ user.username }}</h2>
                     <button class="edit-btn" @click="editProfile">Edit Profile</button>
@@ -35,7 +35,7 @@
             <div v-if="currentTab === 'myRecipes'">
                 <div v-if="myRecipes.length" class="recipe-grid">
                     <div class="my-recipe-card" v-for="recipe in myRecipes" :key="recipe._id">
-                        <img :src="`http://localhost:5001${recipe.image}`" alt="Recipe image" class="recipe-thumb" />
+                        <img :src="recipe.image?.startsWith('http') ? recipe.image : (recipe.image?.startsWith('/') ? recipe.image : `/src/assets${recipe.image}`)" alt="Recipe image" class="recipe-thumb" />
                         <div class="recipe-content">
                             <h3 class="recipe-title">{{ recipe.title }}</h3>
                             <p class="recipe-desc">{{ recipe.description }}</p>
