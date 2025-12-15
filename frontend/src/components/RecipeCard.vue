@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="image-container">
-            <img :src="`http://localhost:5001${recipe.image}`" alt="Recipe image" />
+            <img :src="recipe.image?.startsWith('http') ? recipe.image : (recipe.image?.startsWith('/') ? recipe.image : `/src/assets${recipe.image}`)" alt="Recipe image" />
             <button class="fav-btn" @click="toggleFavorite">
                 <Heart :fill="isFavorite ? '#ff7f50' : 'none'" stroke="#ff7f50" />
             </button>

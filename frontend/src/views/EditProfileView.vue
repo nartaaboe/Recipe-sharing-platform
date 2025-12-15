@@ -3,7 +3,7 @@
         <h2>Edit Profile</h2>
 
         <div class="avatar-section">
-            <img :src="previewAvatar || `http://localhost:5001${user.avatar}` || avatar" alt="Avatar"
+            <img :src="previewAvatar || (user.avatar?.startsWith('http') ? user.avatar : (user.avatar?.startsWith('/') ? user.avatar : `/src/assets${user.avatar || '/avatar.jpg'}`)) || avatar" alt="Avatar"
                 class="avatar-preview" />
             <input type="file" @change="onFileChange" accept="image/*" />
             <button @click="uploadAvatar" :disabled="!file">Upload Avatar</button>

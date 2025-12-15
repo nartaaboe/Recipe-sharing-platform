@@ -51,7 +51,7 @@
                 <div class="grid-main">
                     <section class="featured-card">
                         <div class="featured-thumb-wrap">
-                            <img :src="`http://localhost:5001${featured.image}`" alt="featured"
+                            <img :src="featured.image?.startsWith('http') ? featured.image : (featured.image?.startsWith('/') ? featured.image : `/src/assets${featured.image}`)" alt="featured"
                                 class="featured-image" />
                         </div>
                         <div class="featured-body">
@@ -66,7 +66,7 @@
                             <p class="featured-desc">{{ featured.description }}</p>
                             <div class="featured-meta">
                                 <div class="author">
-                                    <img :src="`http://localhost:5001${featured.author?.avatar}`" class="avatar" />
+                                    <img :src="featured.author?.avatar?.startsWith('http') ? featured.author.avatar : (featured.author?.avatar?.startsWith('/') ? featured.author.avatar : `/src/assets${featured.author?.avatar || '/avatar.jpg'}`)" class="avatar" />
                                     <div>
                                         <div class="author-name">{{ featured.author?.username }}</div>
                                         <div class="author-date">{{ new Date(featured.createdAt).toLocaleDateString() }}
@@ -84,7 +84,7 @@
 
                         <div class="latest-grid">
                             <article v-for="r in latest" :key="r.id" class="article-card">
-                                <img :src="`http://localhost:5001${r.image}`" class="article-thumb" />
+                                <img :src="r.image?.startsWith('http') ? r.image : (r.image?.startsWith('/') ? r.image : `/src/assets${r.image}`)" class="article-thumb" />
                                 <div class="article-body">
                                     <h4 class="article-title">{{ r.title }}</h4>
                                     <div class="article-meta">{{ r.author?.username }} · {{ r.date }}</div>

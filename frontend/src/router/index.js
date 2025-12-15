@@ -34,6 +34,14 @@ const routes = [
     component: () => import("../views/EditProfileView.vue")
   },
   {
+    path: "/chefs",
+    component: () => import("../views/ChefsView.vue")
+  },
+  {
+    path: "/chef/:id",
+    component: () => import("../views/ChefProfileView.vue")
+  },
+  {
     path: '/:pathMatch(.*)*',
     component: () => import("../views/NotFoundView.vue")
   }

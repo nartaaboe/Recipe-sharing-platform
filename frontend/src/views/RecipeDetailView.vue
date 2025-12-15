@@ -3,7 +3,7 @@
         <div ref="printableArea" class="printable-content">
             <div class="hero">
                 <div class="hero-image">
-                    <img :src="`http://localhost:5001${recipe.image}`" alt="recipe" crossorigin="anonymous" />
+                    <img :src="recipe.image?.startsWith('http') ? recipe.image : (recipe.image?.startsWith('/') ? recipe.image : `/src/assets${recipe.image}`)" alt="recipe" crossorigin="anonymous" />
                 </div>
 
                 <div class="title-row">
@@ -40,8 +40,8 @@
             <p class="short-desc">{{ recipe.description }}</p>
 
             <div class="author-actions">
-                <div class="author-card">
-                    <img :src="`http://localhost:5001${recipe.author.avatar}`" alt="author" class="author-avatar" />
+                <div class="author-card" @click="goToChefProfile" style="cursor: pointer;">
+                    <img :src="recipe.author?.avatar?.startsWith('http') ? recipe.author.avatar : (recipe.author?.avatar?.startsWith('/') ? recipe.author.avatar : `/src/assets${recipe.author?.avatar || '/avatar.jpg'}`)" alt="author" class="author-avatar" />
                     <div class="author-info">
                         <div class="author-name">{{ recipe.author.username }}</div>
                         <div class="author-role">{{ new Date(recipe.createdAt).toLocaleDateString() }}</div>
@@ -121,6 +121,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { Heart, Share2 } from 'lucide-vue-next'
 import { getRecipeAPI } from '@/api/recipe'
 import { addFavoriteAPI, removeFavoriteAPI, getFavoritesAPI } from '@/api/user'
+import { mockAPI } from '@/mocks/mockData'
 import html2pdf from 'html2pdf.js'
 
 const router = useRouter()
@@ -150,12 +151,23 @@ const isGeneratingPdf = ref(false)
 
 const showCopyTooltip = ref(false)
 
+const goToChefProfile = () => {
+    if (recipe.value?.author?._id) {
+        router.push(`/chef/${recipe.value.author._id}`);
+    }
+}
+
 const fetchRecipe = async () => {
     try {
         const res = await getRecipeAPI(recipeId)
         recipe.value = res
 
-        reviews.value = res.reviews || []
+        // Load reviews from mock data if using mock mode
+        if (import.meta.env.VITE_USE_MOCK === 'true' || !import.meta.env.VITE_API_URL) {
+            reviews.value = mockAPI.getReviews(recipeId) || []
+        } else {
+            reviews.value = res.reviews || []
+        }
         //related.value = res.related || []
     } catch (err) {
         console.error('Failed to fetch recipe:', err)
